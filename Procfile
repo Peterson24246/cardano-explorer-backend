@@ -1,0 +1,1 @@
+web: gunicorn cardano_explorer_backend.wsgi --log-file -
