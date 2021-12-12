@@ -14,5 +14,4 @@ def index(request):
     except ApiError as e:
         health = { 'error' : e }
 
-    print(health)
     return JsonResponse(health)
