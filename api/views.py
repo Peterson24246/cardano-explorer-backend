@@ -23,16 +23,18 @@ def index(request):
 
 def block_latest(request):
     try:
-        latest_block = api.block_latest(return_type="json")
+        latest_block = api.block_latest(return_type='object')
+        dict_of_block = vars(latest_block)
     except ApiError as e:
-        latest_block = ''
+        latest_block = {'error': e}
     
-    return JsonResponse(latest_block)
+    return JsonResponse(dict_of_block)
 
 def epoch_latest(request):
     try:
-        latest_epoch = api.epoch_latest(return_type='json')
+        latest_epoch = api.epoch_latest(return_type='object')
+        dict_of_epoch = vars(latest_epoch)
     except ApiError as e:
-        latest_epoch = ''
+        latest_epoch = {'error': e}
 
-    return JsonResponse(latest_epoch)
+    return JsonResponse(dict_of_epoch)
