@@ -17,7 +17,7 @@ def index(request):
     try:
         health = api.health(return_type='json')
     except ApiError as e:
-        health = { 'error' : e }
+        health = {'status': e.status_code, 'error': e.error, 'Message': e.message}
 
     return JsonResponse(health)
 
@@ -26,7 +26,7 @@ def block_latest(request):
         latest_block = api.block_latest(return_type='object')
         dict_of_block = vars(latest_block)
     except ApiError as e:
-        dict_of_block = vars(ApiError)
+        dict_of_block = {'status': e.status_code, 'error': e.error, 'Message': e.message}
     
     return JsonResponse(dict_of_block)
 
@@ -35,6 +35,6 @@ def epoch_latest(request):
         latest_epoch = api.epoch_latest(return_type='object')
         dict_of_epoch = vars(latest_epoch)
     except ApiError as e:
-        dict_of_epoch = vars(ApiError)
+        dict_of_epoch = {'status': e.status_code, 'error': e.error, 'Message': e.message}
 
     return JsonResponse(dict_of_epoch)
