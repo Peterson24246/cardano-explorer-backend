@@ -26,7 +26,7 @@ def block_latest(request):
         latest_block = api.block_latest(return_type='object')
         dict_of_block = vars(latest_block)
     except ApiError as e:
-        dict_of_block = {'error': e}
+        dict_of_block = vars(ApiError)
     
     return JsonResponse(dict_of_block)
 
@@ -35,6 +35,6 @@ def epoch_latest(request):
         latest_epoch = api.epoch_latest(return_type='object')
         dict_of_epoch = vars(latest_epoch)
     except ApiError as e:
-        dict_of_epoch = {'error': e}
+        dict_of_epoch = vars(ApiError)
 
     return JsonResponse(dict_of_epoch)
