@@ -25,6 +25,14 @@ def block_latest(request):
     try:
         latest_block = api.block_latest(return_type="json")
     except ApiError as e:
-        latest_block = {'error' : e }
+        latest_block = ''
     
     return JsonResponse(latest_block)
+
+def epoch_latest(request):
+    try:
+        latest_epoch = api.epoch_latest(return_type='json')
+    except ApiError as e:
+        latest_epoch = ''
+
+    return JsonResponse(latest_epoch)
